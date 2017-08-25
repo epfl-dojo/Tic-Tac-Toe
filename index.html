@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" type="text/css" href="styles/style.css" />
+</head>
+<body>
+  <h1>Tic Tac Toe</h1>
+  <table>
+    <tr>
+      <td class="click"></td>
+      <td class="click"></td>
+      <td class="click"></td>
+    </tr>
+    <tr>
+      <td class="click"></td>
+      <td class="click"></td>
+      <td class="click"></td>
+    </tr>
+    <tr>
+      <td class="click"></td>
+      <td class="click"></td>
+      <td class="click"></td>
+    </tr>
+  </table>
+
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous">
+  </script>
+  <script type="text/javascript">
+    $(document).ready(()=>{
+      var tour = 1;
+      $('.click').on('click', function(){
+        if ($(this).html() == '') {
+          if(tour % 2 == 0){
+            $(this).text('o');
+          } else {
+            $(this).text('x');
+          }
+          checkWin(tour);
+          tour += 1;
+
+        }
+      })
+    });
+
+    function checkWin (nombredetours) {
+      console.log("Au tour " + nombredetours + ", persone n'a gagné")
+    }
+
+  </script>
+</body>
+</html>
