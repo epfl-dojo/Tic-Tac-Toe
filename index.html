@@ -11,19 +11,19 @@
   <h1>Tic Tac Toe</h1>
   <table>
     <tr>
-      <td class="click"></td>
-      <td class="click"></td>
-      <td class="click"></td>
+      <td class="click x1 y3"></td>
+      <td class="click x2 y3"></td>
+      <td class="click x3 y3"></td>
     </tr>
     <tr>
-      <td class="click"></td>
-      <td class="click"></td>
-      <td class="click"></td>
+      <td class="click x1 y2"></td>
+      <td class="click x2 y2"></td>
+      <td class="click x3 y2"></td>
     </tr>
     <tr>
-      <td class="click"></td>
-      <td class="click"></td>
-      <td class="click"></td>
+      <td class="click x1 y1"></td>
+      <td class="click x2 y1"></td>
+      <td class="click x3 y1"></td>
     </tr>
   </table>
 
@@ -50,7 +50,82 @@
     });
 
     function checkWin (nombredetours) {
-      console.log("Au tour " + nombredetours + ", persone n'a gagné")
+      estqueqqnagane = false
+      rows = []
+      columns = []
+      tabVal = ["a","b","c","d","e","f","g","h","i"]
+      idx = 0
+
+      $('table tr td').each(function()
+      {
+        if($(this).html() != ""){
+          tabVal[idx] = $(this).html()
+        }
+        idx = idx + 1
+        console.log(tabVal)
+      });
+
+      //Test de la première ligne
+      if(tabVal[0] == tabVal[1] && tabVal[0] == tabVal[2]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[0] + " a gagné")
+        estqueqqnagane = tabVal[0]
+      }
+
+      //Test de la deuxième ligne
+      if(tabVal[3] == tabVal[4] && tabVal[3] == tabVal[5]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[3] + " a gagné")
+        estqueqqnagane = tabVal[3]
+      }
+
+      //Test de la troisième ligne
+      if(tabVal[6] == tabVal[7] && tabVal[6] == tabVal[8]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[6] + " a gagné")
+        estqueqqnagane = tabVal[6]
+      }
+
+      //Test de la première colonne
+      if(tabVal[0] == tabVal[3] && tabVal[0] == tabVal[6]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[0] + " a gagné")
+        estqueqqnagane = tabVal[0]
+      }
+
+      //Test de la deuxième colonne
+      if(tabVal[1] == tabVal[4] && tabVal[1] == tabVal[7]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[1] + " a gagné")
+        estqueqqnagane = tabVal[1]
+      }
+
+      //Test de la troisième colonne
+      if(tabVal[2] == tabVal[5] && tabVal[2] == tabVal[8]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[2] + " a gagné")
+        estqueqqnagane = tabVal[2]
+      }
+
+      //Test de la première diagonale
+      if(tabVal[0] == tabVal[4] && tabVal[0] == tabVal[8]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[0] + " a gagné")
+        estqueqqnagane = tabVal[0]
+      }
+
+      //Test de la deuxième diagonale
+      if(tabVal[2] == tabVal[4] && tabVal[2] == tabVal[6]){
+        //console.log("Au tour " + nombredetours + ", " + tabVal[2] + " a gagné")
+        estqueqqnagane = tabVal[2]
+      }
+      if(estqueqqnagane){
+        alert("Quelqu'un a gagné! c'est " + estqueqqnagane)
+        if (confirm("Voulez-vous rejouer ?")) {
+          // oui il le veut
+        } else {
+          // non il en a marre
+        }
+      }
+      else{
+        console.log("Au tour " + nombredetours + ", personne n'a gagné")
+      }
+    // TODO - que faire si personne n'a gagné -> EGALITE
+    // TODO - A la fin de la partie, demander si on veut recommencer une partie
+    // TODO - Faire une IA pour jouer tout seul
     }
 
   </script>
