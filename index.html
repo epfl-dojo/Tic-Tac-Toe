@@ -33,6 +33,13 @@
   crossorigin="anonymous">
   </script>
   <script type="text/javascript">
+  var joueur1 = 0
+  var joueur2 = 0
+
+  while (!joueur1 || !joueur2) {
+    var joueur1 = joueur1 && !parseInt(joueur1[0]).isNumeric() ? joueur1 :  prompt ("Prénom du joueur 1")
+    var joueur2 = joueur2 ? joueur2 : prompt ("Prénom du joueur 2")
+  }
     $(document).ready(()=>{
       var tour = 1;
       $('.click').on('click', function(){
@@ -42,14 +49,14 @@
           } else {
             $(this).text('x');
           }
-          checkWin(tour);
+          checkWin(tour, joueur1, joueur2);
           tour += 1;
 
         }
       })
     });
 
-    function checkWin (nombredetours) {
+    function checkWin (nombredetours, joueurX, joueurO) {
       estqueqqnagane = false
       rows = []
       columns = []
@@ -113,21 +120,33 @@
         estqueqqnagane = tabVal[2]
       }
       if(estqueqqnagane){
-        alert("Quelqu'un a gagné! c'est " + estqueqqnagane)
-        if (confirm("Voulez-vous rejouer ?")) {
-          // oui il le veut
+        if(estqueqqnagane == "x"){
+          estqueqqnagane = joueurX;
         } else {
-          // non il en a marre
+          estqueqqnagane = joueurO;
         }
+        alert("Quelqu'un a gagné! c'est " + estqueqqnagane)
+        rejouer ()
       }
       else{
-        console.log("Au tour " + nombredetours + ", personne n'a gagné")
+        // alert("Egalité personne n'a gagné")
+      }
+
+      if (nombredetours == 9 && !estqueqqnagane) {
+        alert("Egalité personne n'a gagné")
+        rejouer()
       }
     // TODO - que faire si personne n'a gagné -> EGALITE
     // TODO - A la fin de la partie, demander si on veut recommencer une partie
     // TODO - Faire une IA pour jouer tout seul
     }
-
+    function rejouer(){
+      if (confirm("Voulez-vous rejouer ?")) {
+        location.reload();
+      } else {
+        window.location = "https://9gag.com";
+      }
+    }
   </script>
 </body>
 </html>
