@@ -33,14 +33,12 @@
   crossorigin="anonymous">
   </script>
   <script type="text/javascript">
-  var joueur1 = 0
-  var joueur2 = 0
 
-  while (!joueur1 || !joueur2) {
-    var joueur1 = joueur1 && !parseInt(joueur1[0]).isNumeric() ? joueur1 :  prompt ("Prénom du joueur 1")
-    var joueur2 = joueur2 ? joueur2 : prompt ("Prénom du joueur 2")
-  }
+
+
     $(document).ready(()=>{
+      var joueur1 = askName("joueur1")
+      var joueur2 = askName("joueur2")
       var tour = 1;
       $('.click').on('click', function(){
         if ($(this).html() == '') {
@@ -56,6 +54,18 @@
       })
     });
 
+    function askName (name) {
+      var joueur = 0
+      while (joueur == 0) {
+        var promptedName = prompt("Veuillez entrer le prénom du " + name)
+        if (promptedName != "") {
+          if (promptedName.match(/^\d\w*/) == null) {
+            return promptedName
+
+          }
+        }
+      }
+    }
     function checkWin (nombredetours, joueurX, joueurO) {
       estqueqqnagane = false
       rows = []
